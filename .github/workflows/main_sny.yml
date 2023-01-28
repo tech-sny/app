@@ -59,4 +59,4 @@ jobs:
           app-name: 'sny'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EAB863718F2647C4A5A06BED8EF39FFB }}
-          package: .
+          package: release.zip
