@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./DemoCss.css";
 import ListGroup from "react-bootstrap/ListGroup";
-import { FloatingLabel } from "react-bootstrap";
-import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
+
 
 function DemoComponent(props) {
   const list = [
