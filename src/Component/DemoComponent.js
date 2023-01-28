@@ -19,7 +19,7 @@ function DemoComponent(props) {
 
    useEffect(() => {
     axios
-        .get('/employee',{headers: {"Access-Control-Allow-Origin": "*"}})
+        .get("https://life-care.azurewebsites.net/employee")
       
         .then(function (response) {
             console.log(response);
