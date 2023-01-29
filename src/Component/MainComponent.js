@@ -9,10 +9,12 @@ function MainComponent() {
   const name = "";
   const salary = "";
   const dept = "";
+  const image ="";
   const [getname, setName] = useState(name);
   const [getSalary, setSalary] = useState(salary);
   const [getDept, setDept] = useState(dept);
-  const data = { name: getname, salary: getSalary, dept: getDept };
+  const [getImage, setImage] = useState(image);
+  const data = { name: getname, salary: getSalary, dept: getDept ,image:getImage};
   const [nameCss,setNameCss]=useState("pink");
   const [salaryCss,setSalaryCss]=useState("pink");
   const [dateCss,setDateCss]=useState("pink");
@@ -32,16 +34,40 @@ function MainComponent() {
     setSalaryCss("aqua");
     console.log(getSalary);
   };
-
+  const imageHandler = (event) => {
+    setImage(event.target.value);
+    setSalaryCss("aqua");
+    console.log(getImage);
+  };
+  
   const submitHamdler = (event) => {
     event.preventDefault();
-    const article = { name: data.name,salary:data.salary,dept:data.dept };
-    axios.post('https://life-care.azurewebsites.net/employee', article)
-        .then(response => this.setState({ articleId: response.data.id }));
-    console.log(data);
+    console.log(event)
+    const article = {name:data.name,salary:parseInt(data.salary),dept:data.dept};
+    const formData = new FormData();
+    formData.append('data',  String(`{"name":"${data.name}" ,"salary":"${data.salary}","dept":"${data.dept}"}`));
+    formData.append('image', event.target[3].files[0]);
+    
+    
+
+    axios({
+      method: "post",
+      url: "https://life-care.azurewebsites.net/employee",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
     setName("");
     setDept("");
     setSalary("");
+    setImage("")
   };
 
 
@@ -73,7 +99,14 @@ function MainComponent() {
             value={getSalary}
             placeholder="Enter salary"
           />
-          
+          <input
+            type="file"
+            id="img"
+            style={{ backgroundColor: salaryCss }}
+            onChange={imageHandler}
+            value={getImage}
+            placeholder="select image"
+          />
           <Button type="submit">save</Button>
         </Form.Group>
       </Form>
@@ -82,7 +115,8 @@ function MainComponent() {
           <DemoComponent
             name={getname}
             salary={getSalary}
-            date={getDept} 
+            date={getDept}
+            image={getImage} 
           />
         }
       </>
