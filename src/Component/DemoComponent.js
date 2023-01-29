@@ -8,9 +8,9 @@ function DemoComponent(props) {
   const imagePrefix="https://filestora.blob.core.windows.net/image/";
   const list = [
     {
-      name: "anand",
-      salary: "8545",
-      date: "2022-12-26",
+      name: "",
+      salary: "",
+      dept: "",
       image:""
      
     },
@@ -36,7 +36,7 @@ function DemoComponent(props) {
         {
           name: props.name,
           salary: props.salary,
-          date: props.date,
+          dept: props.dept,
           image:imagePrefix+props.image
         },
       ];
@@ -48,15 +48,13 @@ function DemoComponent(props) {
   return (
     <div>
       <h2>Name : {props.name}</h2>
+      <h2>Department : {props.dept}</h2>
       <h2>Salary : {props.salary}</h2>
-      <h2>Department : {props.date}</h2>
-      <img src={imagePrefix+props.image}></img>
       <h2 style={{color:'green'}}>want to submit then click save button</h2>
       <>{getList.map((x) =>  (
                 <ListGroup key={x} horizontal={x}>
-                  <h3>{x.date}</h3>
                   <ListGroup.Item style={{backgroundColor:"rgb(110, 239, 63)"}}>Name : {x.name}</ListGroup.Item>
-                  <ListGroup.Item style={{backgroundColor:"rgb(110, 239, 63)"}}>Location : {x.dept }</ListGroup.Item>
+                  <ListGroup.Item style={{backgroundColor:"rgb(110, 239, 63)"}}>Department : {x.dept }</ListGroup.Item>
                   <ListGroup.Item style={{backgroundColor:"rgb(110, 239, 63)"}}>Salary : {x.salary}</ListGroup.Item>
                   <img  src={imagePrefix+x.image}></img>
                   
