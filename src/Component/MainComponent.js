@@ -113,6 +113,7 @@ function MainComponent() {
       <>
         {
           <DemoComponent
+          
             name={getname}
             salary={getSalary}
             date={getDept}
