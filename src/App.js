@@ -5,13 +5,14 @@ import { useState,useEffect } from "react";
 import ChildFormComponent from "./Component/ChildFormComponent";
 import { Button, Form, } from "react-bootstrap";
 import axios from 'axios';
+import HomeComponent from "./Component/HomeComponent/HomeComponent";
 
 function App() {
   
 
 
   return (
-    <div><MainComponent/> 
+    <div><HomeComponent/> 
     </div>
   );
 }
